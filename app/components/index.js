@@ -9,6 +9,7 @@ export {ProductGrid} from './ProductGrid';
 export {Skeleton} from './Skeleton';
 export {Button} from './Button';
 export {CountrySelector} from './CountrySelector';
+export {NewsletterSignup} from './NewsletterSignup';
 export {Cart} from './Cart';
 export {CartLoading} from './CartLoading';
 export {OrderCard} from './OrderCard';
