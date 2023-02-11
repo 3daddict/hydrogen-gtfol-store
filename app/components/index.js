@@ -1,6 +1,6 @@
 export {Layout} from './Layout';
 export {Drawer, useDrawer} from './Drawer';
-export {Heading, Section, Text, PageHeader} from './Text';
+export {Heading, Section, Text, PageHeader, PageHero} from './Text';
 export {Input} from './Input';
 export {ProductGallery} from './ProductGallery';
 export {ProductCard} from './ProductCard';
@@ -24,5 +24,4 @@ export {Grid} from './Grid';
 export {FeaturedProducts} from './FeaturedProducts';
 export {Pagination, getPaginationVariables, usePagination} from './Pagination';
 export {AddToCartButton} from './AddToCartButton';
-// Sue me
 export * from './Icon';

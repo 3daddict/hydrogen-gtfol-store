@@ -2,7 +2,7 @@ import {json} from '@shopify/remix-oxygen';
 import {useLoaderData} from '@remix-run/react';
 import {flattenConnection, AnalyticsPageType} from '@shopify/hydrogen';
 import invariant from 'tiny-invariant';
-import {PageHeader, Section, Text, SortFilter} from '~/components';
+import {PageHeader, PageHero, Section, Text, SortFilter} from '~/components';
 import {ProductGrid} from '~/components/ProductGrid';
 import {PRODUCT_CARD_FRAGMENT} from '~/data/fragments';
 
@@ -122,18 +122,19 @@ export default function Collection() {
 
   return (
     <>
-      <PageHeader heading={collection.title}>
+      <PageHero heading={collection.title}>
         {collection?.description && (
-          <div className="flex items-baseline justify-between w-full">
-            <div>
-              <Text format width="narrow" as="p" className="inline-block">
-                {collection.description}
-              </Text>
-            </div>
-          </div>
+          <Text
+            format
+            width="narrow"
+            as="p"
+            className="mt-6 text-lg leading-8 text-gray-300"
+          >
+            {collection.description}
+          </Text>
         )}
-      </PageHeader>
-      <Section>
+      </PageHero>
+      <Section className="text-black bg-gray-100">
         <SortFilter
           filters={collection.products.filters}
           appliedFilters={appliedFilters}

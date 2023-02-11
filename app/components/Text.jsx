@@ -160,3 +160,76 @@ export function PageHeader({
     </header>
   );
 }
+
+export function PageHero({children, heading, ...props}) {
+  return (
+    <header
+      {...props}
+      className="relative py-24 overflow-hidden bg-gray-900 isolate sm:py-32"
+    >
+      <img
+        src="https://images.pexels.com/photos/936023/pexels-photo-936023.jpeg"
+        alt="mans fashion banner"
+        className="absolute inset-0 object-cover w-full h-full -z-10 brightness-50"
+      />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1097 845"
+        aria-hidden="true"
+        className="hidden transform-gpu blur-3xl sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:w-[68.5625rem]"
+      >
+        <path
+          fill="url(#10724532-9d81-43d2-bb94-866e98dd6e42)"
+          fillOpacity=".2"
+          d="M301.174 646.641 193.541 844.786 0 546.172l301.174 100.469 193.845-356.855c1.241 164.891 42.802 431.935 199.124 180.978 195.402-313.696 143.295-588.18 284.729-419.266 113.148 135.13 124.068 367.989 115.378 467.527L811.753 372.553l20.102 451.119-530.681-177.031Z"
+        />
+        <defs>
+          <linearGradient
+            id="10724532-9d81-43d2-bb94-866e98dd6e42"
+            x1="1097.04"
+            x2="-141.165"
+            y1=".22"
+            y2="363.075"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#676767" />
+            <stop offset={1} stopColor="#e7e7e7" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1097 845"
+        aria-hidden="true"
+        className="absolute left-1/2 -top-52 -z-10 w-[68.5625rem] -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0"
+      >
+        <path
+          fill="url(#8ddc7edb-8983-4cd7-bccb-79ad21097d70)"
+          fillOpacity=".2"
+          d="M301.174 646.641 193.541 844.786 0 546.172l301.174 100.469 193.845-356.855c1.241 164.891 42.802 431.935 199.124 180.978 195.402-313.696 143.295-588.18 284.729-419.266 113.148 135.13 124.068 367.989 115.378 467.527L811.753 372.553l20.102 451.119-530.681-177.031Z"
+        />
+        <defs>
+          <linearGradient
+            id="8ddc7edb-8983-4cd7-bccb-79ad21097d70"
+            x1="1097.04"
+            x2="-141.165"
+            y1=".22"
+            y2="363.075"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#676767" />
+            <stop offset={1} stopColor="#e7e7e7" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div className="px-6 mx-auto max-w-7xl lg:px-8">
+        <div className="max-w-2xl mx-auto lg:mx-0">
+          <h2 className="text-4xl tracking-tight text-white sm:text-6xl">
+            {heading}
+          </h2>
+          {children}
+        </div>
+      </div>
+    </header>
+  );
+}
