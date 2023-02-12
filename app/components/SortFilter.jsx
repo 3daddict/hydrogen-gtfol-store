@@ -338,13 +338,13 @@ export default function SortMenu() {
 
       <Menu.Items
         as="nav"
-        className="absolute right-0 flex flex-col p-4 text-right rounded-sm bg-contrast"
+        className="absolute right-0 flex flex-col p-4 text-right bg-gray-100 rounded shadow"
       >
         {items.map((item) => (
           <Menu.Item key={item.label}>
             {() => (
               <Link
-                className={`block text-sm pb-2 px-3 ${
+                className={`block text-sm p-2 px-3 items-center hover:bg-gray-200 ${
                   activeItem?.key === item.key ? 'font-bold' : 'font-normal'
                 }`}
                 to={getSortLink(item.key, params, location)}

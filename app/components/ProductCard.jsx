@@ -47,24 +47,27 @@ export function ProductCard({
         to={`/products/${product.handle}`}
         prefetch="intent"
       >
-        <div className={clsx('grid gap-4', className)}>
+        <div className={clsx('grid', className)}>
           <div className="card-image aspect-[4/5] bg-primary/5">
             {image && (
-              <Image
-                className="aspect-[4/5] w-full object-cover fadeIn"
-                widths={[320]}
-                sizes="320px"
-                loaderOptions={{
-                  crop: 'center',
-                  scale: 2,
-                  width: 320,
-                  height: 400,
-                }}
-                data={image}
-                alt={image.altText || `Picture of ${product.title}`}
-                loading={loading}
-              />
+              <div className="w-full overflow-hidden bg-gray-100 rounded-lg aspect-w-1 aspect-h-1 group-hover:opacity-75">
+                <Image
+                  className="object-cover object-center w-full h-full fadeIn"
+                  widths={[320]}
+                  sizes="320px"
+                  loaderOptions={{
+                    crop: 'center',
+                    scale: 2,
+                    width: 320,
+                    height: 400,
+                  }}
+                  data={image}
+                  alt={image.altText || `Picture of ${product.title}`}
+                  loading={loading}
+                />
+              </div>
             )}
+            {/* BADGE */}
             <Text
               as="label"
               size="fine"
@@ -73,25 +76,32 @@ export function ProductCard({
               {cardLabel}
             </Text>
           </div>
-          <div className="grid gap-1">
-            <Text
-              className="w-full overflow-hidden whitespace-nowrap text-ellipsis "
-              as="h3"
-            >
-              {product.title}
+          <div className="relative flex justify-between mt-4 space-x-8 text-base font-medium text-gray-900">
+            <h3 className="text-sm hover:text-gray-500">
+              <Link to={`/products/${product.handle}`}>
+                <span aria-hidden="true" />
+                {product.title}
+              </Link>
+            </h3>
+            <Text className="flex text-gray-900 hover:text-gray-500">
+              <Money
+                withoutTrailingZeros
+                data={price}
+                className="text-2xl font-thin"
+              />
+              {isDiscounted(price, compareAtPrice) && (
+                <CompareAtPrice
+                  className={'ml-2 opacity-50 font-normal'}
+                  data={compareAtPrice}
+                />
+              )}
             </Text>
-            <div className="flex gap-4">
-              <Text className="flex gap-4">
-                <Money withoutTrailingZeros data={price} />
-                {isDiscounted(price, compareAtPrice) && (
-                  <CompareAtPrice
-                    className={'opacity-50'}
-                    data={compareAtPrice}
-                  />
-                )}
-              </Text>
-            </div>
           </div>
+          {product.variants.nodes && (
+            <p className="mb-8 text-sm text-gray-500 hover:text-gray-700">
+              {product.variants.nodes[0].selectedOptions[0].value}
+            </p>
+          )}
         </div>
       </Link>
       {quickAdd && (
@@ -122,12 +132,17 @@ function CompareAtPrice({data, className}) {
   const {currencyNarrowSymbol, withoutTrailingZerosAndCurrency} =
     useMoney(data);
 
-  const styles = clsx('strike', className);
+  const styles = clsx(className);
 
   return (
-    <span className={styles}>
+    <s className={styles}>
       {currencyNarrowSymbol}
       {withoutTrailingZerosAndCurrency}
-    </span>
+      <span
+        className={
+          "absolute top-1/2 text-red-500 opacity-70 content '' w-110% h-0.5 rounded-sm left-5% whitespace-nowrap block transform -rotate-15"
+        }
+      ></span>
+    </s>
   );
 }
