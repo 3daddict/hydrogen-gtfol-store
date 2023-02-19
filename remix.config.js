@@ -1,16 +1,14 @@
 /** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
+  appDirectory: 'app',
   ignoredRouteFiles: ['**/.*'],
   watchPaths: ['./public'],
-  // When running locally in development mode, we use the built-in remix
-  // server. This does not understand the vercel lambda module format,
-  // so we default back to the standard build output.
-  // server: './server.js',
-  // serverBuildPath: 'dist/worker/index.js',
-  // appDirectory: 'app',
-  // assetsBuildDirectory: 'dist/client/build',
-  // publicPath: (process.env.HYDROGEN_ASSET_BASE_URL ?? '/') + 'build/',
-  server: process.env.NODE_ENV === 'development' ? undefined : './server.js',
+  server: './server.js',
+  /**
+   * The following settings are required to deploy Hydrogen apps to Oxygen:
+   */
+  publicPath: (process.env.HYDROGEN_ASSET_BASE_URL ?? '/') + 'build/',
+  assetsBuildDirectory: 'dist/client/build',
   serverBuildPath: 'dist/worker/index.js',
   serverMainFields: ['browser', 'module', 'main'],
   serverConditions: ['worker', process.env.NODE_ENV],
