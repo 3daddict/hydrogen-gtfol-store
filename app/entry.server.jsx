@@ -1,6 +1,5 @@
 import {RemixServer} from '@remix-run/react';
-import {renderToReadableStream} from 'react-dom/server';
-import isbot from 'isbot';
+import {renderToString} from 'react-dom/server';
 
 export default async function handleRequest(
   request,
@@ -8,18 +7,14 @@ export default async function handleRequest(
   responseHeaders,
   remixContext,
 ) {
-  const body = await renderToReadableStream(
+  const markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />,
   );
 
-  if (isbot(request.headers.get('User-Agent'))) {
-    await body.allReady;
-  }
-
   responseHeaders.set('Content-Type', 'text/html');
 
-  return new Response(body, {
-    status: responseStatusCode,
+  return new Response('<!DOCTYPE html>' + markup, {
     headers: responseHeaders,
+    status: responseStatusCode,
   });
 }
