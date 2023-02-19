@@ -11,7 +11,7 @@ module.exports = {
   // assetsBuildDirectory: 'dist/client/build',
   // publicPath: (process.env.HYDROGEN_ASSET_BASE_URL ?? '/') + 'build/',
   server: process.env.NODE_ENV === 'development' ? undefined : './server.js',
-  serverBuildPath: 'api/index.js',
+  serverBuildPath: 'dist/worker/index.js',
   serverMainFields: ['browser', 'module', 'main'],
   serverConditions: ['worker', process.env.NODE_ENV],
   serverDependenciesToBundle: 'all',
