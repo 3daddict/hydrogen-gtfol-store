@@ -1,6 +1,6 @@
-import {createRequestHandler} from '@remix-run/vercel';
-import * as build from '@remix-run/dev/server-build';
-import {getBuyerIp} from '@shopify/remix-oxygen';
+// Virtual entry point for the app
+import * as remixBuild from '@remix-run/dev/server-build';
+import {createRequestHandler, getBuyerIp} from '@shopify/remix-oxygen';
 import {createStorefrontClient, storefrontRedirect} from '@shopify/hydrogen';
 import {HydrogenSession} from '~/lib/session.server';
 import {getLocaleFromRequest} from '~/lib/utils';
@@ -45,7 +45,7 @@ export default {
        * Hydrogen's Storefront client to the loader context.
        */
       const handleRequest = createRequestHandler({
-        build,
+        build: remixBuild,
         mode: process.env.NODE_ENV,
         getLoadContext: () => ({cache, session, waitUntil, storefront, env}),
       });
